@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+
+  consumer:
+    build: ./consumer
+    ports:
+      - "8080:8080"
+    environment:
+      SUPPLIER_HOST: supplier:8081
+
+  supplier:
+    build: ./supplier
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+
+  db:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres

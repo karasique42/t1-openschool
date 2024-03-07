@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: test
+  liquibase:
+    contexts: ${spring.profiles.active}
+    change-log: db/db.changelog-master.xml
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+server:
+  port: 8081
